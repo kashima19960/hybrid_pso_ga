@@ -139,9 +139,9 @@ $RECYCLE.BIN/
 
 # 项目特定文件
 # 实验结果和数据文件（可选择性忽略）
-data/*.json
-data/*.csv
-data/*.png
+# data/*.json
+# data/*.csv
+# data/*.png
 
 # 临时文件
 temp/
