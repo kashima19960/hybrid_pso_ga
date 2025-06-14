@@ -1,135 +1,143 @@
-# 基于自适应分组策略的PSO-GA混合优化算法
+# Hybrid PSO-GA Algorithm with Adaptive Grouping Strategy
 
-## 项目概述
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)](https://github.com/kashima19960/hybrid_pso_ga)
 
-本项目实现了一种创新的PSO（粒子群优化）和GA（遗传算法）混合策略，通过自适应分组控制和动态权重调整机制，有效解决传统算法容易陷入局部极值的问题。该算法在多个标准测试函数上表现出色，收敛精度和稳定性显著优于传统PSO和GA算法。
+📖 **[中文文档 / Chinese Documentation](README_ZH.md)**
 
-## 算法特点
+## Overview
 
-1. **自适应分组控制策略**
-   - 根据适应度排名动态将种群分为优解组和劣解组
-   - 优解组采用PSO进行快速局部搜索
-   - 劣解组采用GA进行全局探索
-   - 分组比例根据种群多样性自适应调整
+This project implements an innovative hybrid optimization algorithm that combines Particle Swarm Optimization (PSO) and Genetic Algorithm (GA) with an adaptive grouping strategy. The algorithm effectively addresses the local optima problem common in traditional optimization algorithms through dynamic weight adjustment mechanisms and population grouping control.
 
-2. **三重动态权重调整**
-   - 多样性因子：根据种群聚集度调整
-   - 收敛速度因子：监控适应度改善速率
-   - 进程因子：考虑优化阶段特征
-   - 综合三因子实现精细化权重控制
+## 🚀 Key Features
 
-3. **精英迁移机制**
-   - PSO→GA：全局最优位置指导GA变异
-   - GA→PSO：优秀个体替换PSO中的劣质粒子
-   - 双向信息交换促进算法协同进化
+### 1. Adaptive Grouping Control Strategy
+- **Dynamic Population Division**: Splits population into elite and inferior groups based on fitness ranking
+- **Elite Group**: Uses PSO for fast local search
+- **Inferior Group**: Uses GA for global exploration
+- **Adaptive Ratio**: Group proportions adjust based on population diversity
 
-4. **自适应重新分组**
-   - 基于性能反馈的重新分组触发机制
-   - 防止算法陷入停滞状态
-   - 维持种群多样性
+### 2. Triple Dynamic Weight Adjustment
+- **Diversity Factor**: Adjusts based on population convergence degree
+- **Convergence Speed Factor**: Monitors fitness improvement rate
+- **Progress Factor**: Considers optimization phase characteristics
+- **Integrated Control**: Fine-grained weight management through three-factor synthesis
 
-## 项目结构
+### 3. Elite Migration Mechanism
+- **PSO→GA**: Global best position guides GA mutation
+- **GA→PSO**: Elite individuals replace poor particles in PSO
+- **Bidirectional Exchange**: Promotes collaborative evolution
+
+### 4. Adaptive Regrouping
+- **Performance-based Trigger**: Regrouping based on performance feedback
+- **Stagnation Prevention**: Prevents algorithm from getting stuck
+- **Diversity Maintenance**: Preserves population diversity
+
+## 📁 Project Structure
 
 ```
 claude4_copilot_project/
-├── algorithms/              # 核心算法实现
-│   ├── __init__.py         # 模块初始化
-│   ├── pso.py              # 粒子群优化算法
-│   ├── ga.py               # 遗传算法
-│   └── hybrid_pso_ga.py    # 自适应混合PSO-GA算法
-├── benchmark/              # 测试函数集
-│   ├── __init__.py         # 模块初始化  
-│   └── test_functions.py   # 标准测试函数（Sphere、Rastrigin等）
-├── experiments/            # 实验与分析
-│   ├── __init__.py         # 模块初始化
-│   ├── comparison.py       # 算法对比实验
-│   └── visualization.py    # 结果可视化生成
-├── data/                   # 实验数据与结果
-│   ├── experiment_results.json      # 实验结果数据
-│   ├── experiment_report.csv        # 统计报告
-│   ├── performance_comparison.png   # 性能对比图
-│   ├── convergence_curves.png       # 收敛曲线图
-│   ├── algorithm_ranking.png        # 算法排名热力图
-│   ├── average_ranking.png          # 平均排名图
-│   ├── statistical_analysis.png     # 统计分析图
-│   └── 2d_optimization.png          # 2D优化轨迹图
-├── requirements.txt        # Python依赖包
-├── main.py                # 主程序入口
-├── README.md              # 项目说明文档
-└── .gitignore             # Git忽略文件配置
+├── algorithms/              # Core algorithm implementations
+│   ├── __init__.py         # Module initialization
+│   ├── pso.py              # Particle Swarm Optimization
+│   ├── ga.py               # Genetic Algorithm
+│   └── hybrid_pso_ga.py    # Adaptive Hybrid PSO-GA Algorithm
+├── benchmark/              # Test function suite
+│   ├── __init__.py         # Module initialization  
+│   └── test_functions.py   # Standard test functions (Sphere, Rastrigin, etc.)
+├── experiments/            # Experiments and analysis
+│   ├── __init__.py         # Module initialization
+│   ├── comparison.py       # Algorithm comparison experiments
+│   └── visualization.py    # Results visualization
+├── data/                   # Experimental data and results
+│   ├── experiment_results.json      # Experiment result data
+│   ├── experiment_report.csv        # Statistical report
+│   ├── performance_comparison.png   # Performance comparison chart
+│   ├── convergence_curves.png       # Convergence curves
+│   ├── algorithm_ranking.png        # Algorithm ranking heatmap
+│   ├── average_ranking.png          # Average ranking chart
+│   ├── statistical_analysis.png     # Statistical analysis
+│   └── 2d_optimization.png          # 2D optimization trajectory
+├── requirements.txt        # Python dependencies
+├── main.py                # Main program entry
+├── README.md              # Project documentation (English)
+├── README_ZH.md           # Project documentation (Chinese)
+└── .gitignore             # Git ignore configuration
 ```
 
-## 测试函数集
+## 🧪 Test Function Suite
 
-本项目包含7个经典优化测试函数，涵盖不同的优化挑战：
+The project includes 7 classical optimization test functions covering different optimization challenges:
 
-| 函数名 | 类型 | 特点 | 维度 | 搜索域 |
-|--------|------|------|------|--------|
-| Sphere | 单峰 | 简单凸函数 | 2D | [-5.12, 5.12] |
-| Rosenbrock | 窄谷 | 收敛困难 | 2D | [-2.048, 2.048] |
-| Rastrigin | 多峰 | 高度多模态 | 2D | [-5.12, 5.12] |
-| Griewank | 多峰 | 多局部极值 | 2D | [-600, 600] |
-| Ackley | 指数 | 指数特性 | 2D | [-32, 32] |
-| Schwefel | 欺骗性 | 远距离全局最优 | 2D | [-500, 500] |
-| Levy | 多峰 | 复杂地形 | 2D | [-10, 10] |
+| Function | Type | Characteristics | Dimensions | Search Domain |
+|----------|------|----------------|------------|---------------|
+| Sphere | Unimodal | Simple convex function | 2D | [-5.12, 5.12] |
+| Rosenbrock | Valley | Difficult convergence | 2D | [-2.048, 2.048] |
+| Rastrigin | Multimodal | Highly multimodal | 2D | [-5.12, 5.12] |
+| Griewank | Multimodal | Multiple local optima | 2D | [-600, 600] |
+| Ackley | Exponential | Exponential characteristics | 2D | [-32, 32] |
+| Schwefel | Deceptive | Distant global optimum | 2D | [-500, 500] |
+| Levy | Multimodal | Complex landscape | 2D | [-10, 10] |
 
-## 环境要求
-- Python 3.8 或更高版本
+## 📋 Requirements
 
-## 安装与运行
+- Python 3.8 or higher
 
-### 1. 环境准备
+## 🛠️ Installation & Usage
+
+### 1. Environment Setup
+
 ```bash
-# 克隆项目（如果使用Git）
+# Clone the repository
 git clone https://github.com/kashima19960/hybrid_pso_ga
+cd hybrid_pso_ga
 
-# 创建虚拟环境（推荐）
+# Create virtual environment (recommended)
 python -m venv .venv
-.venv\Scripts\activate  # Windows
-# source .venv/bin/activate  # Linux/Mac
 
-# 安装依赖
+# Activate virtual environment
+# Windows
+.venv\Scripts\activate
+# Linux/macOS
+source .venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### 2. 快速开始
+### 2. Quick Start
+
 ```bash
-# 运行完整实验流程
+# Run complete experimental workflow
 python main.py
 
-# 或分步执行：
-
-# 1. 运行算法对比实验
+# Or execute step by step:
+# 1. Run algorithm comparison
 python experiments/comparison.py
 
-# 2. 生成可视化结果
+# 2. Generate visualizations
 python experiments/visualization.py
 ```
 
+## 📊 Experimental Results
+reference the `data/` directory
 
-## 实验结果
-参照`data/`目录
+## 📄 License
 
-## 常见问题
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-1. **字体显示问题**
+## 🙋‍♂️ FAQ
+1. **Memory Issues**
    ```python
-   # 如果中文显示为方块，确保系统安装了微软雅黑字体
-   import matplotlib.pyplot as plt
-   plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']
-   ```
-
-2. **内存不足**
-   ```python
-   # 减少种群大小或迭代次数
+   # If you encounter memory issues, try reducing the population size or the number of iterations
    optimizer = AdaptiveHybridPSOGA(population_size=30, max_iterations=100)
    ```
-
-3. **收敛过慢**
+2. **Slow Convergence**
    ```python
-   # 调整参数设置
+   # If convergence is slow, consider adjusting the parameter settings
    optimizer = AdaptiveHybridPSOGA(
-       alpha=0.7,              # 增加优解组比例
-       exchange_interval=5     # 减少交换间隔
+       alpha=0.7,              # Increase elite group ratio
+       exchange_interval=5     # Decrease exchange interval
    )
    ```
