@@ -31,7 +31,7 @@
 ## 项目结构
 
 ```
-claude4_copilot_project/
+hybrid_pso_ga/
 ├── algorithms/              # 核心算法实现
 │   ├── __init__.py         # 模块初始化
 │   ├── pso.py              # 粒子群优化算法

@@ -37,7 +37,7 @@ This project implements an innovative hybrid optimization algorithm that combine
 ## 📁 Project Structure
 
 ```
-claude4_copilot_project/
+hybrid_pso_ga/
 ├── algorithms/              # Core algorithm implementations
 │   ├── __init__.py         # Module initialization
 │   ├── pso.py              # Particle Swarm Optimization
